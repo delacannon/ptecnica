@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 export const Login = () => {
   const dispatch = useAppDispatch();
-  const { token, error } = useAppSelector((state) => state.appReducer);
+  const { token } = useAppSelector((state) => state.appReducer);
   const {
     register,
     handleSubmit,
@@ -18,8 +18,6 @@ export const Login = () => {
   if (token) {
     return <Navigate to="/users" />;
   }
-
-  console.log(error);
 
   return (
     <FormGroup>

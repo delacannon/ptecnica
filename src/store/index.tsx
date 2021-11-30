@@ -3,25 +3,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./sagas";
 import { appReducer } from "./reducers";
-
-const saveToLocalStorage = (state) => {
-  try {
-    const serialisedState = JSON.stringify(state);
-    localStorage.setItem("state", serialisedState);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const loadFromLocalStorage = () => {
-  try {
-    const serialisedState = localStorage.getItem("state");
-    if (serialisedState === null) return undefined;
-    return JSON.parse(serialisedState);
-  } catch (err) {
-    console.log(err);
-  }
-};
+import { loadFromLocalStorage, saveToLocalStorage } from "./utils";
 
 const sagaMiddleware = createSagaMiddleware();
 

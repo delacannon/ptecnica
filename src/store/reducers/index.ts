@@ -8,7 +8,7 @@ import {
 } from "../constants/constants";
 
 const initialState = {
-  token: "",
+  token: null,
   users: {},
   currentPage: 1,
   error: null,

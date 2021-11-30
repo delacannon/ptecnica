@@ -1,9 +1,9 @@
 import { takeEvery, fork, call, put, takeLatest } from "redux-saga/effects";
 import * as api from "api";
 import {
+  fetchUserError,
   fetchUsersSuccess,
   fetchUserSuccess,
-  fetchUserError,
   logout,
 } from "store/actions";
 import { FETCH_USER, FETCH_USERS, LOGOUT } from "store/constants/constants";
@@ -11,25 +11,21 @@ import { FETCH_USER, FETCH_USERS, LOGOUT } from "store/constants/constants";
 function* getUserToken(data) {
   try {
     const response = yield call(api.getUser, data.payload);
-    if (response.status === 200) {
-      yield put(fetchUserSuccess(response.token));
-    }
+    yield put(fetchUserSuccess(response.token));
   } catch (err) {
-    yield put(fetchUserError(err));
+    yield put(fetchUserError("user not found"));
   }
 }
 
 function* getUserTokenRequest() {
-  yield takeLatest(FETCH_USER, getUserToken);
+  yield takeEvery(FETCH_USER, getUserToken);
 }
 
 function* getUsers(page) {
-  // TODO: refact "page query" a { payload }
   try {
     const response = yield call(api.getUsers, page.payload);
     yield put(fetchUsersSuccess(response));
   } catch (err) {
-    // TODO: capturar con fetchUserError control de errores
     console.log(err);
   }
 }

@@ -59,7 +59,7 @@ const UserName = styled.p`
   margin-right: 0.3em;
 `;
 
-const UserEmail = styled.p`
+const UserEmail = styled.span`
   font-weight: bold;
   font-size: 1.4rem;
   color: tomato;
