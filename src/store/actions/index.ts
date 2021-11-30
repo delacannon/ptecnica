@@ -7,35 +7,35 @@ import {
   LOGOUT,
 } from "../constants/constants";
 
-export const fetchUser = (authData) => {
+export const fetchUser = (authData: string) => {
   return {
     type: FETCH_USER,
     payload: authData,
   };
 };
 
-export const fetchUserSuccess = (token) => {
+export const fetchUserSuccess = (token: string) => {
   return {
     type: USER_FETCHED,
     payload: token,
   };
 };
 
-export const fetchUserError = (error) => {
+export const fetchUserError = (error: string) => {
   return {
     type: USER_FETCHED_ERROR,
     payload: error,
   };
 };
 
-export const fetchUsers = (page) => {
+export const fetchUsers = (page: number) => {
   return {
     type: FETCH_USERS,
     payload: page,
   };
 };
 
-export const fetchUsersSuccess = (users) => {
+export const fetchUsersSuccess = (users: object) => {
   return {
     type: USERS_FETCHED,
     payload: users,
@@ -47,7 +47,3 @@ export const logout = () => {
     type: LOGOUT,
   };
 };
-
-// TODO
-// export const fetchUsersError = () => {};
-// export const fetchUserError = () => {};

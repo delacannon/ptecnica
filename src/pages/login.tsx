@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { fetchUser } from "store/actions";
 import { useAppDispatch, useAppSelector } from "hooks/redux-hooks";
@@ -23,7 +22,6 @@ export const Login = () => {
     <FormGroup>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Input
-          defaultValue="eve.holt@reqres.in"
           {...register("username", {
             required: "required",
             minLength: {
@@ -31,6 +29,7 @@ export const Login = () => {
               message: "Nombre de usuario demasiado corto",
             },
           })}
+          autoComplete="on"
           placeholder="Usuario"
         />
         {errors.username && <Span role="alert">{errors.username.message}</Span>}
@@ -42,9 +41,9 @@ export const Login = () => {
               message: "La contraseña debe tener por lo menos 6 caracteres",
             },
           })}
+          autoComplete="on"
           placeholder="Contraseña"
           type="password"
-          defaultValue="cityslicka"
         />
         {errors.password && <Span role="alert">{errors.password.message}</Span>}
         <InputButton type="submit" value="Iniciar Sesión" />

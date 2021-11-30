@@ -1,4 +1,4 @@
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useAppSelector } from "hooks/redux-hooks";
 import styled from "styled-components";
 

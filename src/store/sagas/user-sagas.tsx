@@ -1,4 +1,4 @@
-import { takeEvery, fork, call, put, takeLatest } from "redux-saga/effects";
+import { fork, call, put, takeLatest } from "redux-saga/effects";
 import * as api from "api";
 import {
   fetchUserError,
@@ -18,7 +18,7 @@ function* getUserToken(data) {
 }
 
 function* getUserTokenRequest() {
-  yield takeEvery(FETCH_USER, getUserToken);
+  yield takeLatest(FETCH_USER, getUserToken);
 }
 
 function* getUsers(page) {

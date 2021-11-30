@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { Login, Users } from "pages";
 import { useAppSelector } from "hooks/redux-hooks";
