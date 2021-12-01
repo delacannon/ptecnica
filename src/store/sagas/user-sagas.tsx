@@ -11,17 +11,18 @@ import { FETCH_USER, FETCH_USERS, LOGOUT } from "store/constants/constants";
 function* getUserToken(data) {
   try {
     const response = yield call(api.getUser, data.payload);
-    if (response.error) {
-      yield put(fetchUserError(response.error));
+
+    if (response.token) {
+      yield put(fetchUserSuccess(response.token));
     }
-    yield put(fetchUserSuccess(response.token));
+    yield put(fetchUserError(response.error));
   } catch (err) {
     console.log(err);
   }
 }
 
 function* getUserTokenRequest() {
-  yield takeEvery(FETCH_USER, getUserToken);
+  yield takeLatest(FETCH_USER, getUserToken);
 }
 
 function* getUsers(page) {
