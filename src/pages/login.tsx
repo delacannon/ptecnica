@@ -18,8 +18,6 @@ export const Login = () => {
     return <Navigate to="/users" />;
   }
 
-  console.log(error);
-
   return (
     <FormGroup>
       <Form onSubmit={handleSubmit(onSubmit)}>

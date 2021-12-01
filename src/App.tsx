@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home, Users, Login } from "pages";
 import { PrivateRoute } from "components/routing/private-route";
 import { Layout } from "components/gui/layout";
-import { useAppSelector } from "hooks/redux-hooks";
 
 export const App = () => {
   return (

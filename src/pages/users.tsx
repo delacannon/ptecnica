@@ -14,7 +14,7 @@ export const Users = () => {
 
   useEffect(() => {
     dispatch(fetchUsers(currentPage));
-  }, []);
+  }, [dispatch, currentPage]);
 
   return (
     <UsersContainer>

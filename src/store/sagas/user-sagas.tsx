@@ -1,4 +1,4 @@
-import { fork, call, put, takeLatest, takeEvery } from "redux-saga/effects";
+import { fork, call, put, takeLatest } from "redux-saga/effects";
 import * as api from "api";
 import {
   fetchUserError,
