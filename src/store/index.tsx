@@ -18,6 +18,8 @@ const store = createStore(
 sagaMiddleware.run(rootSaga);
 
 store.subscribe(() => saveToLocalStorage(store.getState()));
+
+// Crea type global para useSelector / useDispatch
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 

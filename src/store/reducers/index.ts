@@ -43,7 +43,7 @@ export const appReducer = (state = initialState, action) => {
     case LOGOUT:
       return {
         ...state,
-        token: "",
+        token: null,
       };
     default:
       return state;
