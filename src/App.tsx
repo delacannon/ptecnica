@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, Users, Login } from "pages";
-import { PrivateRoute } from "components/routing/private-route";
-import { Layout } from "components/gui/layout";
+import { Home, Users, Login, PrivateRoute } from "pages";
+import { Layout } from "components/layout";
 
 export const App = () => {
   return (

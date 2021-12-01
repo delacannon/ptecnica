@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "hooks/redux-hooks";
 import { fetchUsers } from "store/actions";
-import { UserItem } from "components/gui/user-item";
+import { UserItem } from "components/user-item";
 
 type PaginationNumberProps = {
   currentPage: number;

@@ -11,7 +11,7 @@ export const NavBar = () => {
     <NavContainer>
       <NavContent>
         <NavBrand>
-          <NavBrandName to=".">La Liga</NavBrandName>
+          <NavBrandName to=".">DEV</NavBrandName>
         </NavBrand>
         <ButtonsContainer>
           {token && (

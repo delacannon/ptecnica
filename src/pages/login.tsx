@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { fetchUser } from "store/actions";
 import { useAppDispatch, useAppSelector } from "hooks/redux-hooks";
@@ -5,6 +6,7 @@ import { Navigate } from "react-router-dom";
 import styled from "styled-components";
 
 export const Login = () => {
+  const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
   const { token, error } = useAppSelector((state) => state.appReducer);
   const {
@@ -12,7 +14,16 @@ export const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => dispatch(fetchUser(data));
+  const onSubmit = (data) => {
+    dispatch(fetchUser(data));
+    setLoading(!loading);
+  };
+
+  useEffect(() => {
+    if (error) {
+      setLoading(!loading);
+    }
+  }, [error]);
 
   if (token) {
     return <Navigate to="/users" />;
@@ -46,7 +57,7 @@ export const Login = () => {
           type="password"
         />
         {errors.password && <Span role="alert">{errors.password.message}</Span>}
-        <InputButton type="submit" value="Iniciar Sesión" />
+        <InputButton type="submit" value="Iniciar Sesión" disabled={loading} />
         {error && <Span role="alert">{error}</Span>}
       </Form>
     </FormGroup>

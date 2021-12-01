@@ -1,5 +1,9 @@
 export const saveToLocalStorage = (state) => {
   try {
+    const { token } = state.appReducer;
+    if (token === null) {
+      return;
+    }
     const serialisedState = JSON.stringify(state);
     localStorage.setItem("state", serialisedState);
   } catch (err) {

@@ -19,6 +19,7 @@ export const appReducer = (state = initialState, action) => {
     case FETCH_USER:
       return {
         ...state,
+        error: null,
       };
     case USER_FETCHED:
       return {
