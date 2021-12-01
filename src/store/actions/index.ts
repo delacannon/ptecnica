@@ -2,7 +2,7 @@ import {
   FETCH_USER,
   FETCH_USERS,
   USER_FETCHED,
-  USER_FETCHED_ERROR,
+  FETCH_ERROR,
   USERS_FETCHED,
   LOGOUT,
 } from "../constants/constants";
@@ -21,9 +21,9 @@ export const fetchUserSuccess = (token: string) => {
   };
 };
 
-export const fetchUserError = (error: string) => {
+export const fetchUserError = (error) => {
   return {
-    type: USER_FETCHED_ERROR,
+    type: FETCH_ERROR,
     payload: error,
   };
 };

@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 export const Login = () => {
   const dispatch = useAppDispatch();
-  const { token } = useAppSelector((state) => state.appReducer);
+  const { token, error } = useAppSelector((state) => state.appReducer);
   const {
     register,
     handleSubmit,
@@ -47,6 +47,7 @@ export const Login = () => {
         />
         {errors.password && <Span role="alert">{errors.password.message}</Span>}
         <InputButton type="submit" value="Iniciar Sesión" />
+        {error && <Span role="alert">{error}</Span>}
       </Form>
     </FormGroup>
   );

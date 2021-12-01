@@ -3,7 +3,7 @@ import {
   USER_FETCHED,
   FETCH_USERS,
   USERS_FETCHED,
-  USER_FETCHED_ERROR,
+  FETCH_ERROR,
   LOGOUT,
 } from "../constants/constants";
 
@@ -25,10 +25,10 @@ export const appReducer = (state = initialState, action) => {
         ...state,
         token: action.payload,
       };
-    case USER_FETCHED_ERROR:
+    case FETCH_ERROR:
       return {
         ...state,
-        token: action.payload,
+        error: action.payload,
       };
     case FETCH_USERS:
       return {

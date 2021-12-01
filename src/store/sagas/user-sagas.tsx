@@ -1,4 +1,4 @@
-import { fork, call, put, takeLatest } from "redux-saga/effects";
+import { fork, call, put, takeLatest, takeEvery } from "redux-saga/effects";
 import * as api from "api";
 import {
   fetchUserError,
@@ -11,14 +11,17 @@ import { FETCH_USER, FETCH_USERS, LOGOUT } from "store/constants/constants";
 function* getUserToken(data) {
   try {
     const response = yield call(api.getUser, data.payload);
+    if (response.error) {
+      yield put(fetchUserError(response.error));
+    }
     yield put(fetchUserSuccess(response.token));
   } catch (err) {
-    yield put(fetchUserError("user not found"));
+    console.log(err);
   }
 }
 
 function* getUserTokenRequest() {
-  yield takeLatest(FETCH_USER, getUserToken);
+  yield takeEvery(FETCH_USER, getUserToken);
 }
 
 function* getUsers(page) {
