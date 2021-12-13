@@ -2,13 +2,13 @@ import store from "store";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { App } from "App";
 import * as serviceWorker from "./serviceWorker";
+import { IndexRouter } from "routes";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <IndexRouter />
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

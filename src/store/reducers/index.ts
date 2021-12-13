@@ -1,50 +1,70 @@
-import {
-  FETCH_USER,
-  USER_FETCHED,
-  FETCH_USERS,
-  USERS_FETCHED,
-  FETCH_ERROR,
-  LOGOUT,
-} from "../constants/constants";
+import { ActionType } from "../constants";
+import { Action } from "../actions";
+import { IUsers } from "../actions";
 
-const initialState = {
+interface AppState {
+  token: string | null;
+  users: IUsers;
+  currentPage: number;
+  error: string | null;
+  loading: boolean;
+}
+
+const initialState: AppState = {
   token: null,
-  users: {},
+  users: {
+    page: 0,
+    per_page: 0,
+    total: 0,
+    total_pages: 0,
+    data: [],
+  },
   currentPage: 1,
   error: null,
+  loading: false,
 };
 
-export const appReducer = (state = initialState, action) => {
+export const appReducer = (state: AppState = initialState, action: Action) => {
   switch (action.type) {
-    case FETCH_USER:
+    case ActionType.LOGIN:
       return {
         ...state,
         error: null,
       };
-    case USER_FETCHED:
+    case ActionType.LOGIN_SUCCESS:
       return {
         ...state,
         token: action.payload,
       };
-    case FETCH_ERROR:
+    case ActionType.LOGIN_ERROR:
       return {
         ...state,
         error: action.payload,
       };
-    case FETCH_USERS:
+    case ActionType.FETCH_USERS_LIST:
       return {
         ...state,
         currentPage: action.payload,
       };
-    case USERS_FETCHED:
+    case ActionType.USERS_LIST:
       return {
         ...state,
         users: Object.assign({}, action.payload),
       };
-    case LOGOUT:
+    case ActionType.LOGOUT:
       return {
         ...state,
         token: null,
+      };
+    case ActionType.LOADING_START:
+      return {
+        ...state,
+        loading: action.payload,
+      };
+    case ActionType.LOADING_DONE:
+      return {
+        ...state,
+        loading: action.payload,
       };
     default:
       return state;

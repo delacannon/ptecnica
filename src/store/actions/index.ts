@@ -1,49 +1,67 @@
-import {
-  FETCH_USER,
-  FETCH_USERS,
-  USER_FETCHED,
-  FETCH_ERROR,
-  USERS_FETCHED,
-  LOGOUT,
-} from "../constants/constants";
+import { ActionType } from "../constants";
+import type { User } from "api";
 
-export const fetchUser = (authData: string) => {
-  return {
-    type: FETCH_USER,
-    payload: authData,
-  };
-};
+export interface IUserData {
+  id: number;
+  email: string;
+  first_name: string;
+  last_name: string;
+  avatar: string;
+}
 
-export const fetchUserSuccess = (token: string) => {
-  return {
-    type: USER_FETCHED,
-    payload: token,
-  };
-};
+export interface IUsers {
+  page: number;
+  per_page: number;
+  total: number;
+  total_pages: number;
+  data: IUserData[];
+}
 
-export const fetchUserError = (error) => {
-  return {
-    type: FETCH_ERROR,
-    payload: error,
-  };
-};
+export interface LoginAction {
+  type: ActionType.LOGIN;
+  payload: User;
+}
 
-export const fetchUsers = (page: number) => {
-  return {
-    type: FETCH_USERS,
-    payload: page,
-  };
-};
+export interface LoginSuccessAction {
+  type: ActionType.LOGIN_SUCCESS;
+  payload: string;
+}
 
-export const fetchUsersSuccess = (users: object) => {
-  return {
-    type: USERS_FETCHED,
-    payload: users,
-  };
-};
+export interface LoginErrorAction {
+  type: ActionType.LOGIN_ERROR;
+  payload: string;
+}
 
-export const logout = () => {
-  return {
-    type: LOGOUT,
-  };
-};
+export interface FetchListAction {
+  type: ActionType.FETCH_USERS_LIST;
+  payload: number;
+}
+
+export interface FetchListSuccessAction {
+  type: ActionType.USERS_LIST;
+  payload: IUsers;
+}
+
+export interface LogoutAction {
+  type: ActionType.LOGOUT;
+}
+
+export interface LoadingStartAction {
+  type: ActionType.LOADING_START;
+  payload: boolean;
+}
+
+export interface LoadingDoneAction {
+  type: ActionType.LOADING_DONE;
+  payload: boolean;
+}
+
+export type Action =
+  | LoginAction
+  | LoginSuccessAction
+  | LoginErrorAction
+  | FetchListAction
+  | FetchListSuccessAction
+  | LogoutAction
+  | LoadingStartAction
+  | LoadingDoneAction;

@@ -1,54 +1,69 @@
-import { fork, call, put, takeLatest } from "redux-saga/effects";
-import * as api from "api";
+import { fork, call, put, takeLatest, takeLeading } from "redux-saga/effects";
+import { loginUser, getUsers } from "api";
 import {
-  fetchUserError,
-  fetchUsersSuccess,
-  fetchUserSuccess,
-  logout,
-} from "store/actions";
-import { FETCH_USER, FETCH_USERS, LOGOUT } from "store/constants/constants";
+  fetchListSuccessAction,
+  loginErrorAction,
+  loginSuccessAction,
+  logoutAction,
+  loadingStartAction,
+  loadingDoneAction,
+} from "../action-creators";
+import { ActionType } from "../constants";
+import { httpErrors } from "utils";
 
 function* getUserToken(data) {
   try {
-    const response = yield call(api.getUser, data.payload);
+    yield put(loadingStartAction(true));
 
-    if (response.token) {
-      yield put(fetchUserSuccess(response.token));
+    // POST credenciales
+    const { token } = yield call(loginUser, data.payload);
+    yield put(loginSuccessAction(token));
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      // Detectar posibles errores de petición
+      const error = httpErrors(err.message);
+      yield put(loginErrorAction(error));
     }
-    yield put(fetchUserError(response.error));
-  } catch (err) {
-    console.log(err);
+  } finally {
+    yield put(loadingDoneAction(false));
   }
 }
 
 function* getUserTokenRequest() {
-  yield takeLatest(FETCH_USER, getUserToken);
+  yield takeLeading(ActionType.LOGIN, getUserToken);
 }
 
-function* getUsers(page) {
+function* getList(page) {
   try {
-    const response = yield call(api.getUsers, page.payload);
-    yield put(fetchUsersSuccess(response));
+    yield put(loadingStartAction(true));
+    const response = yield call(getUsers, page);
+    yield put(fetchListSuccessAction(response));
   } catch (err) {
-    console.log(err);
+    if (err instanceof Error) {
+      throw new Error(err.message);
+    }
+  } finally {
+    yield put(loadingDoneAction(false));
   }
 }
 
 function* getUsersRequest() {
-  yield takeLatest(FETCH_USERS, getUsers);
+  yield takeLatest(ActionType.FETCH_USERS_LIST, getList);
 }
 
 function* getLogout() {
   try {
-    yield call(logout);
+    yield call(logoutAction);
     yield call([localStorage, localStorage.clear]);
-  } catch (err) {
-    console.log(err);
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      throw new Error(err.message);
+    }
   }
 }
 
 function* getLogoutRequest() {
-  yield takeLatest(LOGOUT, getLogout);
+  yield takeLatest(ActionType.LOGOUT, getLogout);
 }
 
 export const userSagas = [

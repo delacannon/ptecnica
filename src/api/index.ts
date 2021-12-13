@@ -1,24 +1,14 @@
-// API endpoints
+import { ApiClient } from "./api-client";
+import type { User } from "./api-client";
 
-const apiURL = "https://reqres.in/api";
+const Client = new ApiClient("https://reqres.in/api");
 
-// POST ({ username, password })
-export const getUser = async (data) => {
-  const response = await fetch(`${apiURL}/login`, {
-    headers: { "Content-Type": "application/json" },
-    method: "POST",
-    body: JSON.stringify(data),
-  });
-  return response.json();
+export const loginUser = async (user: User) => {
+  return await Client.login.user(user);
 };
 
-// GET ( query número de página )
-// TODO: pasar {params} a params
-export const getUsers = async (page) => {
-  const response = await fetch(`${apiURL}/users?page=${page}`, {
-    headers: { "Content-Type": "application/json" },
-    method: "GET",
-  });
-
-  return response.json();
+export const getUsers = async (config) => {
+  return await Client.users.get(config);
 };
+
+export type { User };

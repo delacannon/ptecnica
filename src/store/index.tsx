@@ -3,7 +3,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./sagas";
 import { appReducer } from "./reducers";
-import { loadFromLocalStorage, saveToLocalStorage } from "./utils";
+import { loadFromLocalStorage, saveToLocalStorage } from "utils";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -19,7 +19,6 @@ sagaMiddleware.run(rootSaga);
 
 store.subscribe(() => saveToLocalStorage(store.getState()));
 
-// Crea type global para useSelector / useDispatch
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 

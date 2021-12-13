@@ -1,4 +1,4 @@
-export { Home } from "./home";
-export { Login } from "./login";
-export { Users } from "./users";
-export { PrivateRoute } from "./private-route";
+export { HomePage } from "./Home";
+export { LoginPage } from "./Login";
+export { UsersPage } from "./Users";
+export { NotFoundPage } from "./NotFound";
