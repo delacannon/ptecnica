@@ -22,8 +22,8 @@ function* getUserToken({ payload }: LoginAction) {
      * a un usuario con su email y devolver su token de acceso. En la prueba se detalla que debe ser el usuario
      * `eve.holt@reqres.in`, y la contraseña `cityslicka`, esta comprobación debería producirse a nivel
      * de servidor comparando el password de la petición con la contraseña encriptada en de la DB. Bajo
-     * ningún concepto el código enmarcado puede utilizarse en producción. Se trata tan solo de una
-     * simulación que retorna pronto un evento de error de no existir coincidencia en las credenciales.
+     * ningún concepto el código enmarcado puede utilizarse en producción y ocupar este espacio. Se trata tan
+     * solo de una simulación que retorna pronto un evento de error de no existir coincidencia en las credenciales.
      */
     const bearer = `ZXZlLmhvbHRAcmVxcmVzLmluOmNpdHlzbGlja2E=`;
     const { password, username } = payload;

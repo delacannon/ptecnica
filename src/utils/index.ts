@@ -1,4 +1,5 @@
 import { RootState } from "store";
+import { Client } from "api";
 
 export const saveToLocalStorage = (state: RootState) => {
   try {
@@ -9,7 +10,7 @@ export const saveToLocalStorage = (state: RootState) => {
       ...state,
       [Object.keys(state).toString()]: { token: state.appReducer.token },
     });
-
+    injectToken(stashToken);
     localStorage.setItem("token", stashToken);
   } catch (err) {
     console.log(err);
@@ -19,10 +20,18 @@ export const saveToLocalStorage = (state: RootState) => {
 export const loadFromLocalStorage = () => {
   try {
     const stashedToken = localStorage.getItem("token");
+    injectToken(stashedToken);
     if (stashedToken === null) return undefined;
     return JSON.parse(stashedToken);
   } catch (err) {
     console.log(err);
+  }
+};
+
+const injectToken = (stashedToken: string | null) => {
+  if (stashedToken) {
+    const { appReducer } = JSON.parse(stashedToken);
+    Client.header.set("Authorization", `Bearer ${appReducer.token}`);
   }
 };
 

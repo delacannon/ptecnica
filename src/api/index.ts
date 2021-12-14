@@ -1,7 +1,7 @@
 import { ApiClient } from "./api-client";
 import type { User } from "./api-client";
 
-const Client = new ApiClient("https://reqres.in/api", {
+export const Client = new ApiClient("https://reqres.in/api", {
   "Content-Type": "application/json",
 });
 

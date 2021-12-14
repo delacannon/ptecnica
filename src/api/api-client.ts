@@ -18,9 +18,16 @@ export class ApiClient extends HttpClient {
       get: (params: number) => this.get(`/users`, params),
     };
   }
+
   get login() {
     return {
       user: (user: User) => this.post("/login", user),
+    };
+  }
+
+  get header() {
+    return {
+      set: (key: string, value: string) => this.setHeader(key, value),
     };
   }
 }

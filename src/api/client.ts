@@ -27,6 +27,11 @@ export class HttpClient {
     }
   }
 
+  setHeader(key: string, value: string) {
+    this.headers[key] = value;
+    return this;
+  }
+
   get(endpoint: string, param: number) {
     const url = `${endpoint}?page=${param}`;
     return this.fetchData(url, {
