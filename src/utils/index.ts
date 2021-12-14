@@ -1,11 +1,16 @@
-export const saveToLocalStorage = (state) => {
+import { RootState } from "store";
+
+export const saveToLocalStorage = (state: RootState) => {
   try {
     const { token } = state.appReducer;
-    if (token === null) {
-      return;
-    }
-    const serialisedState = JSON.stringify(state);
-    localStorage.setItem("state", serialisedState);
+    if (token === null) return;
+
+    const stashToken = JSON.stringify({
+      ...state,
+      [Object.keys(state).toString()]: { token: state.appReducer.token },
+    });
+
+    localStorage.setItem("token", stashToken);
   } catch (err) {
     console.log(err);
   }
@@ -13,15 +18,15 @@ export const saveToLocalStorage = (state) => {
 
 export const loadFromLocalStorage = () => {
   try {
-    const serialisedState = localStorage.getItem("state");
-    if (serialisedState === null) return undefined;
-    return JSON.parse(serialisedState);
+    const stashedToken = localStorage.getItem("token");
+    if (stashedToken === null) return undefined;
+    return JSON.parse(stashedToken);
   } catch (err) {
     console.log(err);
   }
 };
 
-// TODO: Ampliar lista de errores ( para la prueba són suficientes estos )
+// TODO: Ampliar lista de errores ( para la prueba són suficientes 400-401-500 )
 // TODO: Crear clase personalizada HttpErrorResponeses
 export const httpErrors = (error: string) => {
   let message: string;

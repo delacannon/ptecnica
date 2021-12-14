@@ -1,5 +1,5 @@
+import { createElement } from "react";
 import { Navigate } from "react-router-dom";
-import { UsersPage } from "pages";
 import { useAppSelector } from "hooks/redux-hooks";
 
 type Props = {
@@ -10,7 +10,7 @@ export const PrivateRoute = ({ component }: Props) => {
   const { token } = useAppSelector((state) => state.appReducer);
 
   if (token) {
-    return <UsersPage />;
+    return createElement(component);
   }
 
   return <Navigate to="/login" />;

@@ -1,15 +1,20 @@
 import styled from "styled-components";
 
-export const UsersItemsContainer = styled.div`
+export const UserListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
 `;
 
+export const UsersItemsContainer = styled.div`
+  display: inherit;
+  flex-direction: inherit;
+`;
+
 export const PaginationContainer = styled.ul`
-  display: flex;
+  display: inherit;
   list-style: none;
-  justify-content: center;
+  justify-content: inherit;
   padding: 0.8rem;
 `;

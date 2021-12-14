@@ -46,6 +46,11 @@ export interface LogoutAction {
   type: ActionType.LOGOUT;
 }
 
+export interface ChangePageAction {
+  type: ActionType.CHANGE_PAGE;
+  payload: number;
+}
+
 export interface LoadingStartAction {
   type: ActionType.LOADING_START;
   payload: boolean;
@@ -63,5 +68,6 @@ export type Action =
   | FetchListAction
   | FetchListSuccessAction
   | LogoutAction
+  | ChangePageAction
   | LoadingStartAction
   | LoadingDoneAction;

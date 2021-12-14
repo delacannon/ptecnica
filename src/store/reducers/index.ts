@@ -2,7 +2,7 @@ import { ActionType } from "../constants";
 import { Action } from "../actions";
 import { IUsers } from "../actions";
 
-interface AppState {
+export interface AppState {
   token: string | null;
   users: IUsers;
   currentPage: number;
@@ -55,6 +55,11 @@ export const appReducer = (state: AppState = initialState, action: Action) => {
       return {
         ...state,
         token: null,
+      };
+    case ActionType.CHANGE_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
       };
     case ActionType.LOADING_START:
       return {

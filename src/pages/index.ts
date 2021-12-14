@@ -1,4 +1,4 @@
-export { HomePage } from "./Home";
-export { LoginPage } from "./Login";
-export { UsersPage } from "./Users";
-export { NotFoundPage } from "./NotFound";
+export { HomePage } from "./home";
+export { LoginPage } from "./login";
+export { UsersPage } from "./users";
+export { NotFoundPage } from "./404";

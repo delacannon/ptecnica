@@ -1,23 +1,25 @@
 import styled from "styled-components";
-import type { IPaginationItemBtn } from ".";
+import { fadein } from "styles";
+import type { PageNumberButtonProps } from ".";
 
-export const PaginationItemBtn = styled.li<IPaginationItemBtn>`
+export const PageNumberButton = styled.li<PageNumberButtonProps>`
   padding: 0.4rem;
   text-align: center;
   margin: 0.4rem;
   text-transform: bold;
-  background: ${(props) => props.btnColor.backgroundColor};
-  color: ${(props) => props.btnColor.textColor};
   font-size: 1.4rem;
   width: 2rem;
   border-radius: 0.4rem;
   border: 2.25px solid white;
   cursor: pointer;
+  background: ${(props) => props.btnColor.backgroundColor};
+  color: ${(props) => props.btnColor.textColor};
   pointer-events: ${(props) => props.btnColor.pointerEvents};
   &:hover {
     color: ${(props) => props.btnColor.textColor};
     background: ${(props) => props.btnColor.backgroundColor};
   }
+  animation: ${fadein} 0.6s linear;
 `;
 
 export const btnStyle = [

@@ -1,25 +1,5 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import { fadein, rotate } from "styles";
-
-export const GlobalLayoutStyles = createGlobalStyle`
-  *, *::before, *::after {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-  }
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Helvetica', Arial, Helvetica, sans-serif;
-    color: hsl(0, 0%, 100%);
-    background-image: radial-gradient(
-    circle,
-    rgba(100, 100, 152, 1) 0%,
-    rgba(180, 100, 152, 1) 50%,
-    rgba(255, 99, 71, 1) 100%
-  );
-  }
-`;
 
 export const LoadingSpinner = styled.div`
   animation: ${rotate} 1s linear infinite;
@@ -47,8 +27,6 @@ export const LoadingContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  -webkit-transition: all 0.3s cubic-bezier(0.32, 0.32, 0.32, 1);
-  transition: all 0.4s cubic-bezier(0.155, 0.84, 0.44, 1);
   animation: ${fadein} 0.3s linear;
 `;
 

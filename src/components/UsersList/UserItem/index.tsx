@@ -18,7 +18,6 @@ export const UserItem = ({
       <UserAvatar src={avatar} />
       <UserName>
         {firstName} {lastName}
-        <br />
         <UserEmail>{email}</UserEmail>
       </UserName>
     </UserContainer>

@@ -1,6 +1,26 @@
-import styled, { keyframes } from "styled-components";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
 import { theme } from "./theme";
 import { Link } from "react-router-dom";
+
+export const GlobalLayoutStyles = createGlobalStyle`
+  *, *::before, *::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica', Arial, Helvetica, sans-serif;
+    color: hsl(0, 0%, 100%);
+    background-image: radial-gradient(
+    circle,
+    rgba(100, 100, 152, 1) 0%,
+    rgba(180, 100, 152, 1) 50%,
+    rgba(255, 99, 71, 1) 100%
+  );
+  }
+`;
 
 export const fadein = keyframes`
 from {
@@ -31,7 +51,7 @@ export const Container = styled.div`
     max-width: 95%;
   }
   @media only screen and ${theme.breakpoints.medium} {
-    max-width: 78%;
+    max-width: 75%;
   }
   @media only screen and ${theme.breakpoints.large} {
     max-width: 60%;

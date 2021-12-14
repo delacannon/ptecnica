@@ -1,8 +1,8 @@
 import { useAppDispatch } from "hooks/redux-hooks";
-import { fetchListAction } from "store/action-creators";
-import { PaginationItemBtn, btnStyle } from "./styles";
+import { changePageAction } from "store/action-creators";
+import { PageNumberButton, btnStyle } from "./styles";
 
-export type IPaginationItemBtn = {
+export type PageNumberButtonProps = {
   btnColor: {
     backgroundColor: string;
     textColor: string;
@@ -10,15 +10,15 @@ export type IPaginationItemBtn = {
   };
 };
 
-export const PaginationItem = ({ page, currentPage }) => {
+export const UsersListPagination = ({ page, currentPage }) => {
   const dispatch = useAppDispatch();
   const selectedPage = page === currentPage;
   return (
-    <PaginationItemBtn
-      onClick={() => dispatch(fetchListAction(page))}
+    <PageNumberButton
+      onClick={() => dispatch(changePageAction(page))}
       btnColor={selectedPage ? btnStyle[0] : btnStyle[1]}
     >
       {page}
-    </PaginationItemBtn>
+    </PageNumberButton>
   );
 };

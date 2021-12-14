@@ -8,6 +8,7 @@ import {
   LogoutAction,
   LoadingStartAction,
   LoadingDoneAction,
+  ChangePageAction,
 } from "../actions";
 import type { User } from "api";
 import type { IUsers } from "../actions";
@@ -56,6 +57,13 @@ export const logoutAction = (): LogoutAction => {
 };
 
 // UI Actions
+export const changePageAction = (page: number): ChangePageAction => {
+  return {
+    type: ActionType.CHANGE_PAGE,
+    payload: page,
+  };
+};
+
 export const loadingStartAction = (loading: boolean): LoadingStartAction => {
   return {
     type: ActionType.LOADING_START,

@@ -9,7 +9,6 @@ export const UserContainer = styled.div`
   flex-wrap: wrap;
   background: white;
   box-shadow: 8px 16px tomato;
-  font-family: "Helvetica", arial, sans-serif;
   font-size: 14px;
   line-height: 18px;
   -webkit-transition: all 0.4s cubic-bezier(0.165, 0.44, 0.44, 1);
@@ -29,13 +28,18 @@ export const UserAvatar = styled.img`
   height: 96px;
   border-radius: 50%;
   margin-right: 10px;
+  -webkit-transition: inherit;
+  transition: inherit;
+  ${UserContainer}:hover & {
+    border-radius: 0%;
+  }
 `;
 
 export const UserName = styled.p`
   font-weight: bold;
   font-size: 1rem;
   color: black;
-  margin-bottom: 0.2em;
+  margin-bottom: 0.4em;
   margin-right: 0.3em;
 `;
 
@@ -43,6 +47,7 @@ export const UserEmail = styled.span`
   font-weight: bold;
   font-size: 1.4rem;
   color: tomato;
+  display: block;
   margin-top: 0.8rem;
   margin-right: 0.3em;
 `;

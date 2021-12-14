@@ -2,7 +2,7 @@ import { Container, Header, LinkSpan, Text } from "styles";
 
 export const NotFoundPage = () => (
   <Container>
-    <Header>404</Header>
+    <Header>Error 404</Header>
     <Text>
       La página a la que intentas acceder no existe. Puedes volver al{" "}
       <LinkSpan to={"."}>inicio</LinkSpan>, probar de hacer{" "}
