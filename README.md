@@ -1,4 +1,4 @@
-# Prueba técnica Front End - La Liga
+# PTecnica
 
 Instalación
 
@@ -8,5 +8,3 @@ npm run start
 ```
 
 http://localhost:3000
-
-### Memoria
